@@ -1,10 +1,11 @@
-const express = require('express')
-const Person = require('./models/Person')
+const express = require('express');
+const Person = require('./models/Person');
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/people', (req, res) => {
+router.get('/people', async (req, res) => {
+  let people = await Person.find();
+  res.json({ lunch: { people: people } });
+});
 
-})
-
-module.exports = router
+module.exports = router;
