@@ -36,7 +36,7 @@ class App extends React.Component {
     return (
       <div className='container'>
         <h1>Lunch</h1>
-        <List list={people} />
+        <List items={people} />
       </div>
     );
   }
