@@ -13,16 +13,27 @@ const mapDispatchToProps = {
   fetchPeople
 }
 
-const mapStateToProps = state => ({
-  people: getPeople(state)
-})
+const mapStateToProps = state => {
+  const peopleData = getPeople(state);
+  return {
+    people: peopleData.list,
+    isLoading: peopleData.loading,
+    hasErrors: peopleData.error,
+  }
+}
 
 class App extends React.Component {
   static propTypes = {
     people: PropTypes.array.isRequired
   }
 
+  componentDidMount() {
+    const { fetchPeople } = this.props;
+    fetchPeople();
+  }
+
   render () {
+    console.log(this.props);
     const {
       people
     } = this.props
