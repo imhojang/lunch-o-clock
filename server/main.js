@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const compress = require('compression');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const mongoose = require('mongoose');
 
 const controller = require('./controller');
@@ -16,7 +17,7 @@ mongoose.connect('mongodb://localhost/mini-project-lunch', {
 const app = express();
 app.use(compress());
 app.use(bodyParser.json());
-
+app.use(cors());
 app.use('/api', controller);
 
 const buildDir = path.resolve(__dirname, '..', 'build');
