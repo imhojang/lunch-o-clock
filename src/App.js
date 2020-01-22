@@ -42,11 +42,35 @@ class App extends React.Component {
     this.setState({ value: e.target.value });
   }
 
+  isDuplicateName(name) {
+    const { people } = this.props;
+    let isDuplicate = false;
+
+    people.forEach(person => {
+      if (person.name.toLowerCase() === name.toLowerCase()) {
+        isDuplicate = true;
+      }
+    });
+
+    return isDuplicate;
+  }
+
+  removeExtraWhiteSpaces(str) {
+    return str.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ');
+  }
+
   handleSubmit(e) {
-    e.preventDefault();
-    const { addPerson } = this.props;
-    addPerson(this.state.value);
+    const currentValue = this.removeExtraWhiteSpaces(this.state.value);
+    
+    if (this.isDuplicateName(currentValue)) {
+      alert(`${currentValue} already exists! Please type in a different name!`);
+    } else {
+      const { addPerson } = this.props;
+      addPerson(currentValue);
+    }
+    
     this.setState({ value: '' });
+    e.preventDefault();
   }
 
   render() {
