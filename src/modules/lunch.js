@@ -7,6 +7,9 @@ import * as api from '../utils/api';
 export const FETCH_PEOPLE_BEGIN = 'FETCH_PEOPLE_BEGIN';
 export const FETCH_PEOPLE_SUCCESS = 'FETCH_PEOPLE_SUCCESS';
 export const FETCH_PEOPLE_FAILURE = 'FETCH_PEOPLE_FAILURE';
+export const ADD_PERSON_BEGIN = 'ADD_PERSON_BEGIN';
+export const ADD_PERSON_SUCCESS = 'ADD_PERSON_SUCCESS';
+export const ADD_PERSON_FAILURE = 'ADD_PERSON_FAILURE';
 
 // ------------------------------------
 // Actions
@@ -25,14 +28,39 @@ export const fetchPeopleFailure = error => ({
   payload: { error },
 });
 
+export const addPersonBegin = () => ({
+  type: ADD_PERSON_BEGIN,
+})
+
+export const addPersonSuccess = person => ({
+  type: ADD_PERSON_SUCCESS,
+  payload: { person },
+})
+
+export const addPersonFailure = error => ({
+  type: ADD_PERSON_FAILURE,
+  payload: { error },
+})
+
+export const addPerson = name => {
+  return (dispatch, getState) => {
+    dispatch(addPersonBegin());
+    return api.addPerson(name).then(data => {
+      dispatch(addPersonSuccess(data));
+      return data;
+    })
+    .catch(error => dispatch(addPersonFailure(error)));
+  }
+}
+
 export const fetchPeople = () => {
   return (dispatch, getState) => {
     dispatch(fetchPeopleBegin());
     return api
       .fetchPeople()
-      .then(json => {
-        dispatch(fetchPeopleSuccess(json));
-        return json;
+      .then(data => {
+        dispatch(fetchPeopleSuccess(data));
+        return data;
       })
       .catch(error => dispatch(fetchPeopleFailure(error)));
   };
@@ -60,8 +88,8 @@ function people(state = initialState, action) {
       };
     case FETCH_PEOPLE_SUCCESS:
       return {
-        ...state,
         loading: false,
+        error: null,
         list: action.payload.people,
       }
     case FETCH_PEOPLE_FAILURE:
@@ -69,6 +97,27 @@ function people(state = initialState, action) {
         ...state,
         loading: false,
         error: action.payload.error,
+      }
+    case ADD_PERSON_BEGIN: 
+      return {
+        ...state,
+        loading: true,
+        error: null
+      }
+    case ADD_PERSON_SUCCESS:
+      const { list } = state;
+      const { person } = action.payload
+      const updatedList = list.concat(person);
+      return {
+        list: updatedList,
+        loading: false,
+        error: null,
+      }
+    case ADD_PERSON_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error
       }
     default:
       return state;
