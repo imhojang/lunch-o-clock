@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { fetchPeople, getPeople } from './modules/lunch';
+import { fetchPeople, getPeople, addPerson } from './modules/lunch';
 import List from './components/List';
 import './App.css';
 
 const mapDispatchToProps = {
   fetchPeople,
+  addPerson,
 };
 
 const mapStateToProps = state => {
@@ -20,6 +21,14 @@ const mapStateToProps = state => {
 };
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: '' };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   static propTypes = {
     people: PropTypes.array.isRequired,
   };
@@ -29,14 +38,32 @@ class App extends React.Component {
     fetchPeople();
   }
 
+  handleChange(e) {
+    this.setState({ value: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const { addPerson } = this.props;
+    addPerson(this.state.value);
+    this.setState({ value: '' });
+  }
+
   render() {
-    console.log(this.props);
-    const { people } = this.props;
+    const { people, isLoading, hasError } = this.props;
 
     return (
       <div className='container'>
         <h1>Lunch</h1>
-        <List items={people} />
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type='text'
+            value={this.state.value}
+            onChange={this.handleChange}
+          />
+          <button>Submit</button>
+        </form>
+        {isLoading ? <div>Loading...</div> : <List items={people} />}
       </div>
     );
   }
