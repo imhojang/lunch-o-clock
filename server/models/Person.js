@@ -1,9 +1,9 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const personSchema = mongoose.Schema({
-  name : { type: String, required: true, unique: true }
-})
+const personSchema = new mongoose.Schema({
+  name: { type: String, required: true, unique: true },
+});
 
-const Person = mongoose.model('Person', personSchema)
+const Person = mongoose.model('Person', personSchema);
 
-module.exports = Person
+module.exports = Person;
