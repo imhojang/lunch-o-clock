@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { fetchPeople, getPeople, addPerson } from './modules/lunch';
+import { getPeople, fetchPeople, addPerson, deletePerson } from './modules/lunch';
 import List from './components/List';
 import './App.css';
 
 const mapDispatchToProps = {
   fetchPeople,
   addPerson,
+  deletePerson,
 };
 
 const mapStateToProps = state => {
@@ -74,7 +75,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { people, isLoading, hasError } = this.props;
+    const { people, isLoading, hasError, deletePerson } = this.props;
 
     return (
       <div className='container'>
@@ -87,7 +88,7 @@ class App extends React.Component {
           />
           <button>Submit</button>
         </form>
-        {isLoading ? <div>Loading...</div> : <List items={people} />}
+        {isLoading ? <div>Loading...</div> : <List items={people} handleDelete={deletePerson} />}
       </div>
     );
   }
