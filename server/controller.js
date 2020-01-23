@@ -7,8 +7,7 @@ const removeExtraWhiteSpaces = str => {
   return str.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ');
 };
 
-const isDuplicateName = async name => {
-  const people = await Person.find();
+const isDuplicateName = (name, people) => {
   let isDuplicate = false;
 
   people.forEach(person => {
@@ -16,6 +15,7 @@ const isDuplicateName = async name => {
       isDuplicate = true;
     }
   });
+
   return isDuplicate;
 };
 
@@ -26,8 +26,9 @@ router.get('/people', async (req, res) => {
 
 router.post('/people', async (req, res) => {
   const name = removeExtraWhiteSpaces(req.query.name);
+  const people = await Person.find();
 
-  if (await isDuplicateName(name)) {
+  if (isDuplicateName(name, people)) {
     console.log(`The following name "${name}" already exists`);
     res.status(400).send(`${name} already exists`);
   } else {
@@ -42,6 +43,15 @@ router.post('/people', async (req, res) => {
       }
     });
   }
+});
+
+router.delete('/people', async (req, res) => {
+  const { name } = req.query;
+  const deletedPerson = await Person.findOneAndDelete({ name });
+
+  console.log(deletedPerson);
+  res.json(deletePerson);
+  // if not correctly deleted, return 500 internal server error
 });
 
 module.exports = router;
