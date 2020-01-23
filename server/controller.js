@@ -50,7 +50,7 @@ router.delete('/people', async (req, res) => {
   const deletedPerson = await Person.findOneAndDelete({ name });
 
   console.log(deletedPerson);
-  res.json(deletePerson);
+  res.json(deletedPerson);
   // if not correctly deleted, return 500 internal server error
 });
 
