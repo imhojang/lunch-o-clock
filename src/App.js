@@ -28,6 +28,14 @@ const mapStateToProps = state => {
 };
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { value: 2 };
+    this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
+    this.createGroup = this.createGroup.bind(this);
+  }
   static propTypes = {
     people: PropTypes.array.isRequired,
   };
@@ -35,6 +43,29 @@ class App extends React.Component {
   componentDidMount() {
     const { fetchPeople } = this.props;
     fetchPeople();
+  }
+
+  increment() {
+    this.setState({ value: ++this.state.value });
+  }
+
+  decrement() {
+    if (this.state.value > 2) {
+      this.setState({ value: --this.state.value });
+    } else {
+      alert('Groups cannot be smaller than 2');
+    }
+  }
+
+  createGroup() {
+    let limit = this.props.people.length - 2;
+    if (this.state.value < 2) {
+      alert('Cannot create groups smaller than 2');
+    } else if (limit <= this.state.value && limit < 2) {
+      alert('At least 4 people are required to create groups');
+    } else if (limit < this.state.value) {
+      alert(`Cannot create groups greater than ${limit}`);
+    }
   }
 
   render() {
@@ -51,6 +82,12 @@ class App extends React.Component {
         ) : (
           <List items={people} handleDelete={deletePerson} />
         )}
+
+        <button onClick={this.decrement}>-</button>
+        {this.state.value}
+        <button onClick={this.increment}>+</button>
+        <br />
+        <button onClick={this.createGroup}>Create Group</button>
       </div>
     );
   }
