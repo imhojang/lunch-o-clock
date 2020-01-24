@@ -38,7 +38,7 @@ router.post('/people', async (req, res) => {
         console.log('console.error', err.message);
         return res.status(500).send('Internal Server Error');
       } else {
-        console.log(person.name + ' saved to people collection');
+        console.log(`Successfully saved ${person.name} to people collection`);
         return res.json(person);
       }
     });
@@ -48,9 +48,12 @@ router.post('/people', async (req, res) => {
 router.delete('/people', async (req, res) => {
   const { name } = req.query;
   const deletedPerson = await Person.findOneAndDelete({ name });
-
-  console.log(deletedPerson);
-  res.json(deletedPerson);
+  if (deletedPerson) {
+    console.log(`Successfully removed ${deletedPerson.name} from people collection`);
+    res.json(deletedPerson);
+  } else {
+    res.status(400);
+  }
   // if not correctly deleted, return 500 internal server error
 });
 
