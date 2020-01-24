@@ -4,6 +4,7 @@ import * as api from '../utils/api';
 // ------------------------------------
 // Constants
 // ------------------------------------
+
 export const FETCH_PEOPLE_BEGIN = 'FETCH_PEOPLE_BEGIN';
 export const FETCH_PEOPLE_SUCCESS = 'FETCH_PEOPLE_SUCCESS';
 export const FETCH_PEOPLE_FAILURE = 'FETCH_PEOPLE_FAILURE';
@@ -17,6 +18,7 @@ export const DELETE_PERSON_FAILURE = 'DELETE_PERSON_FAILURE';
 // ------------------------------------
 // Actions
 // ------------------------------------
+
 export const fetchPeopleBegin = () => ({
   type: FETCH_PEOPLE_BEGIN,
 });
