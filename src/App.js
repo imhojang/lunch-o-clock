@@ -10,7 +10,7 @@ import {
 } from './modules/lunch';
 import List from './components/List';
 import InputContainer from './components/InputContainer';
-import CreateGroup from './components/CreateGroup';
+import Group from './components/Group';
 import './App.css';
 
 const mapDispatchToProps = {
@@ -44,7 +44,7 @@ class App extends React.Component {
     return (
       <div className='container'>
         <h1>Lunch</h1>
-
+        <h2>List of People</h2>
         <InputContainer addToList={addPerson} list={people} />
 
         {isLoading ? (
@@ -52,8 +52,8 @@ class App extends React.Component {
         ) : (
           <List items={people} handleDelete={deletePerson} />
         )}
-
-        <CreateGroup people={people} />
+        <h2>Groups</h2>
+        <Group people={people} />
       </div>
     );
   }

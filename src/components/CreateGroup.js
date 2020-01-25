@@ -1,5 +1,6 @@
 import React from 'react';
 import Counter from './Counter';
+import { shuffleArray } from '../utils/index';
 
 class CreateGroup extends React.Component {
   constructor(props) {
@@ -11,31 +12,60 @@ class CreateGroup extends React.Component {
     this.createGroup = this.createGroup.bind(this);
   }
 
-  createGroup() {
-    const numberOfPeople = this.props.people.length;
+  checkGroupSize() {
     const { groupSize } = this.state;
+    const { people } = this.props;
+    const numberOfPeople = people.length;
     const limit = numberOfPeople - 2;
+    let result = false;
 
     if (groupSize < 2) {
       alert('Cannot create groups of size smaller than 2');
+      return false;
     } else if (numberOfPeople % groupSize === 1) {
-      alert(
+      return alert(
         `One person will be left out with current group size: ${groupSize}. \nPlease opt for a different number!`
       );
     } else if (limit <= groupSize && limit < 2) {
-      alert('At least 4 people are required to create groups.');
+      return alert('At least 4 people are required to create groups.');
     } else if (limit < groupSize) {
-      alert(`Cannot create groups of size bigger than ${limit}.`);
+      return alert(`Cannot create groups of size bigger than ${limit}.`);
+    } else {
+      result = true;
+    }
+    return result;
+  }
+
+  chunkArray(array, size) {
+    const chunks = [];
+    let index = 0;
+
+    while (index < array.length) {
+      chunks.push(array.slice(index, index + size));
+      index += size;
+    }
+
+    return chunks;
+  }
+
+  createGroup() {
+    const { people } = this.props;
+    const { groupSize } = this.state;
+
+    if (this.checkGroupSize()) {
+      const shuffledPeople = shuffleArray(people);
+      const groups = this.chunkArray(shuffledPeople, groupSize);
+      this.props.setGroups(groups);
     }
   }
 
   incrementGroupSize() {
-    this.setState({ groupSize: ++this.state.groupSize });
+    this.setState({ groupSize: this.state.groupSize + 1 });
   }
 
   decrementGroupSize() {
     if (this.state.groupSize > 2) {
-      this.setState({ groupSize: --this.state.groupSize });
+      this.setState({ groupSize: this.state.groupSize - 1 });
     } else {
       alert('Groups cannot be smaller than 2');
     }
