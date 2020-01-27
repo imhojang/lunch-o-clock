@@ -1,0 +1,38 @@
+ul {
+  padding: 0;
+  max-height: 450px;
+  margin-bottom: 0;
+}
+
+li {
+  height: 36px;
+  list-style: none;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  margin: 5px 0;
+  padding: 5px;
+  position: relative;
+}
+
+li > span {
+  display: inline-block;
+  width: 200px;
+  text-overflow: ellipsis;
+}
+
+li > i {
+  line-height: 1;
+  cursor: pointer;
+  position: absolute;
+  top: 9px;
+  right: 9px;
+}
+
+li > i:hover {
+  color: white;
+}
+
+li > i > svg {
+  vertical-align: bottom;
+}
