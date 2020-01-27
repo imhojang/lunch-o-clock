@@ -1,0 +1,34 @@
+/* .create-group-container {
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+} */
+
+.create-group-container::after {
+  content: '';
+  display: block;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 10px;
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.create-group-container > div {
+  margin-bottom: 5px;
+}
+
+.create-group-button {
+  width: 100%;
+  padding: 5px 0;
+  border-radius: 5px;
+  background-color: white;
+  border-style: solid;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.create-group-button:hover {
+  background-color: #fce285;
+}
+
+.create-group-button:active {
+  color: white;
+}

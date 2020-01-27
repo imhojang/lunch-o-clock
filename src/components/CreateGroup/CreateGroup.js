@@ -1,6 +1,7 @@
 import React from 'react';
-import Counter from './Counter';
-import { shuffleArray } from '../utils/index';
+import Counter from '../Counter';
+import './CreateGroup.css';
+import { shuffleArray } from '../../utils/index';
 
 class CreateGroup extends React.Component {
   constructor(props) {
@@ -75,13 +76,16 @@ class CreateGroup extends React.Component {
     const { groupSize } = this.state;
 
     return (
-      <div>
+      <div className='create-group-container'>
+        <div>Select Group Size</div>
         <Counter
           count={groupSize}
           increment={this.incrementGroupSize}
           decrement={this.decrementGroupSize}
         />
-        <button onClick={this.createGroup}>Create Group</button>
+        <button className='create-group-button' onClick={this.createGroup}>
+          Let's Group Up!
+        </button>
       </div>
     );
   }
