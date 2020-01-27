@@ -1,6 +1,7 @@
 import React from 'react';
-import CreateGroup from './CreateGroup';
-import List from './List';
+import CreateGroup from '../CreateGroup';
+import List from '../List';
+import './Group.css';
 
 class Group extends React.Component {
   constructor(props) {
@@ -15,8 +16,13 @@ class Group extends React.Component {
   }
 
   renderGroupList(groups) {
-    return groups.map(group => {
-      return <List items={group} />;
+    return groups.map((group, index) => {
+      return (
+        <div className="group-container" key={index}>
+          <h6 className='group-number'>Group {index + 1}</h6>
+          <List items={group} />
+        </div>
+      );
     });
   }
 
@@ -27,7 +33,11 @@ class Group extends React.Component {
     return (
       <div>
         <CreateGroup people={people} setGroups={this.setGroups} />
-        {Boolean(groups.length) && this.renderGroupList(groups)}
+        <div className='group-list-container'>
+          <div>
+            {Boolean(groups.length) && this.renderGroupList(groups)}
+          </div>
+        </div>
       </div>
     );
   }

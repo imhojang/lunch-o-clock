@@ -1,0 +1,25 @@
+.group-number {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 4px 0;
+}
+
+.group-container {
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.group-list-container {
+  height: 407px;
+  padding-left: 17px;
+  max-height: 420px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.group-list-container > div {
+  height: 100%;
+  padding-right: 50px;
+  margin-right: -50px;
+  overflow-y: scroll;
+}
