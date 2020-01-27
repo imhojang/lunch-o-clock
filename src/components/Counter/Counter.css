@@ -1,0 +1,13 @@
+.counter-container > span {
+  width: 100px;
+  display: inline-block;
+  font-size: 20px;
+}
+
+.counter-container > i {
+  cursor: pointer;
+}
+
+.counter-container > i:active {
+  color: #fce285;
+}
