@@ -43,17 +43,21 @@ class App extends React.Component {
 
     return (
       <div className='container'>
-        <h1>Lunch</h1>
-        <h2>List of People</h2>
-        <InputContainer addToList={addPerson} list={people} />
-
-        {isLoading ? (
-          <div>Loading...</div>
-        ) : (
-          <List items={people} handleDelete={deletePerson} />
-        )}
-        <h2>Groups</h2>
-        <Group people={people} />
+        <h1>It's Lunch O'Clock!</h1>
+        <div className='people-container'>
+          <InputContainer addToList={addPerson} list={people} />
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <div className='current-people-list-container'>
+              <List items={people} handleDelete={deletePerson} />
+            </div>
+          )}
+          <div className='total-number-people-box'><span>Number of people: {people.length}</span></div>
+        </div>
+        <div className='people-container'>
+          <Group people={people} />
+        </div>
       </div>
     );
   }

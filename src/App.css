@@ -2,3 +2,33 @@
   padding-top: 20px;
   text-align: center;
 }
+
+.people-container {
+  width: 300px;
+  height: 550px;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  display: inline-block;
+  background: whitesmoke;
+  vertical-align: top;
+  margin: 0 25px;
+}
+
+.current-people-list-container {
+  overflow: hidden;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.current-people-list-container > ul {
+  height: 100%;
+  padding-right: 50px;
+  margin-right: -50px;
+  overflow-y: scroll;
+  padding-left: 17px;
+}
+
+.total-number-people-box {
+  margin: 13px 0;
+}
