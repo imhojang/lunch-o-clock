@@ -7,6 +7,7 @@
   },
   "proxy": "http://localhost:2018",
   "dependencies": {
+    "antd": "^3.26.7",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0",
     "compression": "^1.7.1",
