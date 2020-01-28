@@ -1,11 +1,19 @@
 .container {
+  height: 100%;
   padding-top: 20px;
   text-align: center;
 }
 
+/* .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;;
+} */
+
 .people-container {
   width: 300px;
-  height: 550px;
+  min-height: 550px;
+  height: 75%;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -16,6 +24,7 @@
 }
 
 .current-people-list-container {
+  height: calc(100% - 88px);
   overflow: hidden;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -26,9 +35,16 @@
   padding-right: 50px;
   margin-right: -50px;
   overflow-y: scroll;
-  padding-left: 17px;
+  padding-top: 5px;
+}
+
+.current-people-list-container > ul > li:hover {
+  background-color: #fce285;
 }
 
 .total-number-people-box {
-  margin: 13px 0;
+  padding: 13px 0;
+  background-color: rgba(255, 255, 255, 0.527);
+  /* border: 1px solid rgba(0, 0, 0, 0.2); */
+  border-radius: 5px;
 }
