@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Input from './Input';
+import Input from '.';
 
 class InputContainer extends React.Component {
   constructor(props) {
