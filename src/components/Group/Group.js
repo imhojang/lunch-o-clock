@@ -34,7 +34,7 @@ class Group extends React.Component {
       <div className='group-component'>
         <CreateGroup people={people} setGroups={this.setGroups} />
         <div className='group-list-container'>
-          <div>{Boolean(groups.length) && this.renderGroupList(groups)}</div>
+          <div>{Boolean(groups.length) ? this.renderGroupList(groups) : <p>Looks like you have not created any groups yet...</p>}</div>
         </div>
       </div>
     );
