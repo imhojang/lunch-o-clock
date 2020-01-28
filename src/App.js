@@ -9,7 +9,7 @@ import {
   deletePerson,
 } from './modules/lunch';
 import List from './components/List';
-import InputContainer from './components/InputContainer';
+import InputContainer from './components/Input/InputContainer';
 import Group from './components/Group';
 import './App.css';
 
@@ -44,20 +44,18 @@ class App extends React.Component {
     return (
       <div className='container'>
         <h1>It's Lunch O'Clock!</h1>
-        <div className='people-container'>
-          <InputContainer addToList={addPerson} list={people} />
-          {isLoading ? (
-            <div>Loading...</div>
-          ) : (
+          <div className='people-container'>
+            <InputContainer addToList={addPerson} list={people} />
             <div className='current-people-list-container'>
               <List items={people} handleDelete={deletePerson} />
             </div>
-          )}
-          <div className='total-number-people-box'><span>Number of people: {people.length}</span></div>
-        </div>
-        <div className='people-container'>
-          <Group people={people} />
-        </div>
+            <div className='total-number-people-box'>
+              <span>Number of people: {people.length}</span>
+            </div>
+          </div>
+          <div className='people-container'>
+            <Group people={people} />
+          </div>
       </div>
     );
   }
