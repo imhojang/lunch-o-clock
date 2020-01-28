@@ -4,9 +4,10 @@ import List from './List';
 
 describe('List structure', () => {
   let list;
-  let items = [{ name: 'item 1', _id: 'abc' }];
+  let items;
 
   beforeEach(() => {
+    items = [{ name: 'item 1', _id: 'abc' }];
     list = shallow(<List items={items} />);
   });
 
@@ -16,7 +17,7 @@ describe('List structure', () => {
 
   it('List renders a span', () => {
     expect(list.find('span')).toHaveLength(1);
-  })
+  });
 
   it('List renders an list item', () => {
     expect(list.find('li')).toHaveLength(1);
@@ -25,16 +26,18 @@ describe('List structure', () => {
 
 describe('List behavior', () => {
   let list;
-  let items = [{ name: 'item 1', _id: 'abc' }];
+  let items;
   let handleDelete;
 
   beforeEach(() => {
+    items = [{ name: 'item 1', _id: 'abc' }];
     handleDelete = jest.fn();
     list = mount(<List items={items} handleDelete={handleDelete} />);
   });
 
-  it('List has handleDelete prop', () => {
-    expect(list.props().handleDelete).toBeDefined();
+  it('Props are passed down correctly', () => {
+    expect(list.props().handleDelete).toBe(handleDelete);
+    expect(list.props().items).toBe(items);
   });
 
   it('List item renders a svg that acts as a button', () => {
@@ -46,5 +49,5 @@ describe('List behavior', () => {
     const button = list.find('svg').first();
     button.simulate('click');
     expect(handleDelete).toHaveBeenCalled();
-  })
+  });
 });
