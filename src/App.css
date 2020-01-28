@@ -4,12 +4,6 @@
   text-align: center;
 }
 
-/* .content {
-  display: flex;
-  align-items: center;
-  justify-content: center;;
-} */
-
 .people-container {
   width: 300px;
   min-height: 550px;
@@ -20,7 +14,7 @@
   display: inline-block;
   background: whitesmoke;
   vertical-align: top;
-  margin: 0 25px;
+  margin: 25px 10px;
 }
 
 .current-people-list-container {
