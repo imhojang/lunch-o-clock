@@ -6,8 +6,8 @@ export const DeleteIcon = ({ className, handleClick, item }) => {
       width='24'
       height='24'
       xmlns='http://www.w3.org/2000/svg'
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       viewBox='0 0 25 25'
       className={className}
       onClick={() => handleClick(item.name)}
