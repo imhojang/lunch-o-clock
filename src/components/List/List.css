@@ -20,22 +20,23 @@ li > span {
   text-overflow: ellipsis;
 }
 
-li > i {
-  line-height: 1;
-  cursor: pointer;
+li > svg {
   position: absolute;
   top: 9px;
   right: 9px;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
 }
 
-li > i:hover {
-  color: white;
+li > svg:hover {
+  fill: white;
 }
 
-li > i:active {
-  color: #ffd32e;
+li > button:active {
+  fill: #ffd32e;
 }
 
-li > i > svg {
+/* li > button > svg {
   vertical-align: bottom;
-}
+} */

@@ -1,13 +1,13 @@
 import React from 'react';
 import './Counter.css';
-import { Icon } from 'antd';
+import { IncrementIcon, DecrementIcon } from '../../utils/Icons';
 
 const Counter = ({ count, decrement, increment }) => {
   return (
     <div className='counter-container'>
-      <Icon type='minus' onClick={decrement} />
+      <DecrementIcon handleClick={decrement} />
       <span>{count}</span>
-      <Icon type='plus' onClick={increment} />
+      <IncrementIcon handleClick={increment} />
     </div>
   );
 };

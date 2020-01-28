@@ -4,10 +4,12 @@
   font-size: 20px;
 }
 
-.counter-container > i {
+.counter-container > svg {
   cursor: pointer;
+  width: 15px;
+  vertical-align: sub;
 }
 
-.counter-container > i:active {
-  color: #fce285;
+.counter-container > svg:active {
+  fill: #fce285;
 }
