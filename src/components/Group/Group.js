@@ -18,7 +18,7 @@ class Group extends React.Component {
   renderGroupList(groups) {
     return groups.map((group, index) => {
       return (
-        <div className="group-container" key={index}>
+        <div className='group-container' key={index}>
           <h6 className='group-number'>Group {index + 1}</h6>
           <List items={group} />
         </div>
@@ -31,12 +31,10 @@ class Group extends React.Component {
     const { groups } = this.state;
 
     return (
-      <div>
+      <div className='group-component'>
         <CreateGroup people={people} setGroups={this.setGroups} />
         <div className='group-list-container'>
-          <div>
-            {Boolean(groups.length) && this.renderGroupList(groups)}
-          </div>
+          <div>{Boolean(groups.length) && this.renderGroupList(groups)}</div>
         </div>
       </div>
     );
