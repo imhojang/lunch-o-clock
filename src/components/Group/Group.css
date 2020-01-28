@@ -1,3 +1,8 @@
+.group-component {
+  height: 100%;
+  overflow: hidden;
+}
+
 .group-number {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding: 4px 0;
@@ -8,12 +13,17 @@
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 5px;
   margin-bottom: 10px;
+  transition: background-color 0.5s ease;
+}
+
+.group-container:hover {
+  background-color: #fce285;
+  border: 1px solid #ffd32e;
 }
 
 .group-list-container {
-  height: 407px;
-  padding-left: 17px;
-  max-height: 420px;
+  height: 100%;
+  max-height: 565px;
   margin-top: 10px;
   overflow: hidden;
 }
