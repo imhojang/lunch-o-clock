@@ -1,6 +1,5 @@
 ul {
   padding: 0;
-  max-height: 450px;
   margin-bottom: 0;
 }
 
@@ -31,6 +30,10 @@ li > i {
 
 li > i:hover {
   color: white;
+}
+
+li > i:active {
+  color: #ffd32e;
 }
 
 li > i > svg {
