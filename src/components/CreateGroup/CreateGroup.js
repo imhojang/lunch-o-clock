@@ -21,11 +21,11 @@ class CreateGroup extends React.Component {
     let result = false;
 
     if (groupSize < 2) {
-      alert('Cannot create groups of size smaller than 2');
+      alert('Cannot create groups of size smaller than 2.');
       return false;
     } else if (numberOfPeople % groupSize === 1) {
       return alert(
-        `One person will be left out with current group size: ${groupSize}. \nPlease opt for a different number!`
+        `One person will be left out with current group size: ${groupSize}. \nPlease opt for a different group size!`
       );
     } else if (limit <= groupSize && limit < 2) {
       return alert('At least 4 people are required to create groups.');
