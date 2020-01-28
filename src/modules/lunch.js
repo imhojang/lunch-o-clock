@@ -146,6 +146,7 @@ function people(state = initialState, action) {
       list = state.list;
       person = action.payload.person;
       updatedList = list.concat(person);
+      alert(`Successfully added ${person.name}.`);
       return {
         list: updatedList,
         loading: false,
@@ -167,6 +168,7 @@ function people(state = initialState, action) {
       list = state.list;
       person = action.payload.person;
       updatedList = list.filter(item => item.name !== person.name);
+      alert(`Successfully deleted ${person.name}.`);
       return {
         list: updatedList,
         loading: false,
