@@ -2,43 +2,70 @@ import React from 'react';
 import CreateGroup from '../CreateGroup';
 import List from '../List';
 import './Group.css';
+import { MINIMUM_SIZE } from '../../modules/lunch';
 
-class Group extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { groups: [] };
-    this.setGroups = this.setGroups.bind(this);
-  }
-
-  setGroups(groups) {
-    this.setState({ groups });
-  }
-
-  renderGroupList(groups) {
+const Group = props => {
+  const renderGroupList = groups => {
     return groups.map((group, index) => {
       return (
         <div className='group-container' key={index}>
-          <h6 className='group-number'>Group {index + 1}</h6>
+          <h6 className='group-number'>
+            Group #{index + 1} (group of {group.length})
+          </h6>
           <List items={group} />
         </div>
       );
     });
-  }
+  };
 
-  render() {
-    const { people } = this.props;
-    const { groups } = this.state;
-
-    return (
-      <div className='group-component'>
-        <CreateGroup people={people} setGroups={this.setGroups} />
-        <div className='group-list-container'>
-          <div>{Boolean(groups.length) ? this.renderGroupList(groups) : <p>Looks like you have not created any groups yet...</p>}</div>
+  const minimumGroupSizeText = 'Minimum group size';
+  const numberOfGroupsText = 'Number of groups';
+  const emptyGroupListMessage = (
+    <p>Group list is empty!</p>
+  );
+  const {
+    people,
+    groupOptionCount,
+    incrementGroupOptionCount,
+    decrementGroupOptionCount,
+    updateGroupOptionCount,
+    setGroupOptionToMinimumSize,
+    setGroupOptionToNumberOfGroups,
+    createGroup,
+    groupOption,
+    groupList,
+  } = props;
+  const createGroupProps = {
+    people,
+    groupOptionCount,
+    incrementGroupOptionCount,
+    decrementGroupOptionCount,
+    updateGroupOptionCount,
+    setGroupOptionToMinimumSize,
+    setGroupOptionToNumberOfGroups,
+    createGroup,
+    groupOption,
+  };
+  return (
+    <div className='group-component'>
+      <CreateGroup {...createGroupProps} />
+      <div className='group-list-container'>
+        <div>
+          {Boolean(groupList.length)
+            ? renderGroupList(groupList)
+            : emptyGroupListMessage}
         </div>
       </div>
-    );
-  }
-}
+      {Boolean(groupList.length) && (
+        <div className='group-settings-text'>
+          {groupOption === MINIMUM_SIZE
+            ? minimumGroupSizeText
+            : numberOfGroupsText}
+          : {groupOptionCount}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default Group;
