@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List structure matches snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <List
+    items={
+        Array [
+            Object {
+              "_id": "abc",
+              "name": "item 1",
+            },
+            Object {
+              "_id": "def",
+              "name": "item 2",
+            },
+          ]
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <li>
+          <span>
+                    item 1
+          </span>
+</li>,
+        <li>
+          <span>
+                    item 2
+          </span>
+</li>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": "abc",
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <span>
+              item 1
+</span>,
+            undefined,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "item 1",
+            },
+            "ref": null,
+            "rendered": "item 1",
+            "type": "span",
+          },
+          undefined,
+        ],
+        "type": "li",
+      },
+      Object {
+        "instance": null,
+        "key": "def",
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <span>
+              item 2
+</span>,
+            undefined,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "item 2",
+            },
+            "ref": null,
+            "rendered": "item 2",
+            "type": "span",
+          },
+          undefined,
+        ],
+        "type": "li",
+      },
+    ],
+    "type": "ul",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <li>
+            <span>
+                        item 1
+            </span>
+</li>,
+          <li>
+            <span>
+                        item 2
+            </span>
+</li>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "abc",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <span>
+                item 1
+</span>,
+              undefined,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "item 1",
+              },
+              "ref": null,
+              "rendered": "item 1",
+              "type": "span",
+            },
+            undefined,
+          ],
+          "type": "li",
+        },
+        Object {
+          "instance": null,
+          "key": "def",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <span>
+                item 2
+</span>,
+              undefined,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "item 2",
+              },
+              "ref": null,
+              "rendered": "item 2",
+              "type": "span",
+            },
+            undefined,
+          ],
+          "type": "li",
+        },
+      ],
+      "type": "ul",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    Symbol(enzyme.__providerValues__): undefined,
+  },
+  Symbol(enzyme.__providerValues__): Map {},
+}
+`;

@@ -5,15 +5,19 @@ import Input from './Input';
 describe('Input structure', () => {
   let input;
 
-  beforeEach(() => {
+  it('renders correctly', () => {
     input = shallow(<Input />);
   });
 
-  it('Input renders form', () => {
+  it('matches snapshot', () => {
+    expect(input).toMatchSnapshot();
+  });
+
+  it('renders form element correctly', () => {
     expect(input.find('form')).toHaveLength(1);
   });
 
-  it('Input renders input', () => {
+  it('renders input element correctly', () => {
     expect(input.find('input')).toHaveLength(1);
   });
 });
@@ -37,19 +41,19 @@ describe('Input behavior', () => {
     );
   });
 
-  it('Props are passed down correctly', () => {
+  it('props are passed down correctly', () => {
     expect(input.props().value).toBe(value);
     expect(input.props().handleChange).toBe(handleChange);
     expect(input.props().handleSubmit).toBe(handleSubmit);
   });
 
-  it('Form submission calls handleSubmit', () => {
+  it('form submission calls handleSubmit correctly', () => {
     const form = input.find('form');
     form.simulate('submit');
     expect(handleSubmit).toHaveBeenCalled();
   });
 
-  it('on input change calls handleChange', () => {
+  it('on input change calls handleChange correctly', () => {
     const inputElem = input.find('input');
     inputElem.simulate('change', { value: 'a' });
     expect(handleChange).toHaveBeenCalled();
