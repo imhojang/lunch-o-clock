@@ -1,5 +1,11 @@
 import { combineReducers } from 'redux';
 import * as api from '../utils/api';
+import {
+  checkGroupSize,
+  chunkArrayBySize,
+  chunkArrayByCount,
+  shuffleArray,
+} from '../utils';
 
 // ------------------------------------
 // Constants
@@ -15,9 +21,18 @@ export const DELETE_PERSON_BEGIN = 'DELETE_PERSON_BEGIN';
 export const DELETE_PERSON_SUCCESS = 'DELETE_PERSON_SUCCESS';
 export const DELETE_PERSON_FAILURE = 'DELETE_PERSON_FAILURE';
 
+export const INCREMENT_GROUP_OPTION_COUNT = 'INCREMENT_GROUP_OPTION_COUNT';
+export const DECREMENT_GROUP_OPTION_COUNT = 'DECREMENT_GROUP_OPTION_COUNT';
+export const UPDATE_GROUP_OPTION_COUNT = 'UPDATE_GROUP_OPTION_COUNT';
+export const CREATE_GROUP = 'CREATE_GROUP';
+export const MINIMUM_SIZE = 'MINIMUM_SIZE';
+export const NUMBER_OF_GROUPS = 'NUMBER_OF_GROUPS';
+
 // ------------------------------------
 // Actions
 // ------------------------------------
+
+// People Actions
 
 export const fetchPeopleBegin = () => ({
   type: FETCH_PEOPLE_BEGIN,
@@ -100,6 +115,34 @@ export const deletePerson = name => {
   };
 };
 
+// Group Actions
+
+export const incrementGroupOptionCount = () => ({
+  type: INCREMENT_GROUP_OPTION_COUNT,
+});
+
+export const decrementGroupOptionCount = () => ({
+  type: DECREMENT_GROUP_OPTION_COUNT,
+});
+
+export const updateGroupOptionCount = value => ({
+  type: UPDATE_GROUP_OPTION_COUNT,
+  payload: { value },
+});
+
+export const createGroup = people => ({
+  type: CREATE_GROUP,
+  payload: { people },
+});
+
+export const setGroupOptionToMinimumSize = () => ({
+  type: MINIMUM_SIZE,
+});
+
+export const setGroupOptionToNumberOfGroups = () => ({
+  type: NUMBER_OF_GROUPS,
+});
+
 export const actions = {};
 
 // ------------------------------------
@@ -112,7 +155,7 @@ const initialState = {
   error: null,
 };
 
-function people(state = initialState, action) {
+const people = (state = initialState, action) => {
   let list;
   let person;
   let updatedList;
@@ -183,12 +226,85 @@ function people(state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+const group = (
+  state = { number: 1, list: [], option: NUMBER_OF_GROUPS },
+  action
+) => {
+  switch (action.type) {
+    case INCREMENT_GROUP_OPTION_COUNT:
+      return {
+        ...state,
+        number: Number(state.number) + 1,
+      };
+    case DECREMENT_GROUP_OPTION_COUNT:
+      if (state.number <= 1) {
+        alert('Please select a number greater than or equal to 1.');
+        return {
+          ...state,
+        };
+      }
+      return {
+        ...state,
+        number: Number(state.number) - 1,
+      };
+    case UPDATE_GROUP_OPTION_COUNT:
+      return {
+        ...state,
+        number: action.payload.value,
+      };
+    case MINIMUM_SIZE:
+      return {
+        ...state,
+        option: MINIMUM_SIZE,
+        list: [],
+      };
+    case NUMBER_OF_GROUPS:
+      return {
+        ...state,
+        option: NUMBER_OF_GROUPS,
+        list: [],
+      };
+    case CREATE_GROUP:
+      if (state.option === MINIMUM_SIZE) {
+        if (checkGroupSize(action.payload.people, state.number)) {
+          const shuffledPeople = shuffleArray(action.payload.people);
+          const groups = chunkArrayBySize(shuffledPeople, state.number);
+          return {
+            ...state,
+            list: groups,
+          };
+        }
+      }
+      if (state.option === NUMBER_OF_GROUPS) {
+        if (checkGroupSize(action.payload.people, state.number)) {
+          const shuffledPeople = shuffleArray(action.payload.people);
+          const groups = chunkArrayByCount(shuffledPeople, state.number);
+          console.log(groups);
+          return {
+            ...state,
+            list: groups,
+          };
+        }
+      }
+      return {
+        ...state,
+        list: [],
+      };
+    default:
+      return state;
+  }
+};
 
 const lunchReducer = combineReducers({
   people,
+  group,
 });
 
 export const getPeople = state => state.lunch.people;
+export const getGroupOptionCount = state => state.lunch.group.number;
+export const getGroupOption = state => state.lunch.group.option;
+export const getGroup = state => state.lunch.group.list;
 
 export default lunchReducer;

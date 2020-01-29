@@ -1,94 +1,57 @@
 import React from 'react';
 import Counter from '../Counter';
 import './CreateGroup.css';
-import { shuffleArray } from '../../utils/index';
+import { MINIMUM_SIZE, NUMBER_OF_GROUPS } from '../../modules/lunch';
+import { shuffleArray, chunkArray } from '../../utils/index';
 
-class CreateGroup extends React.Component {
-  constructor(props) {
-    super(props);
+const CreateGroup = ({
+  people,
+  setGroups,
+  groupOptionCount,
+  incrementGroupOptionCount,
+  decrementGroupOptionCount,
+  updateGroupOptionCount,
+  setGroupOptionToMinimumSize,
+  setGroupOptionToNumberOfGroups,
+  createGroup,
+  groupOption,
+}) => {
 
-    this.state = { groupSize: 2 };
-    this.incrementGroupSize = this.incrementGroupSize.bind(this);
-    this.decrementGroupSize = this.decrementGroupSize.bind(this);
-    this.createGroup = this.createGroup.bind(this);
-  }
 
-  checkGroupSize() {
-    const { groupSize } = this.state;
-    const { people } = this.props;
-    const numberOfPeople = people.length;
-    const limit = numberOfPeople - 2;
-    let result = false;
+  const groupOptionCounterProps = {
+    count: groupOptionCount,
+    increment: incrementGroupOptionCount,
+    decrement: decrementGroupOptionCount,
+    updateCount: updateGroupOptionCount,
+  };
 
-    if (groupSize < 2) {
-      alert('Cannot create groups of size smaller than 2.');
-      return false;
-    } else if (numberOfPeople % groupSize === 1) {
-      return alert(
-        `One person will be left out with current group size: ${groupSize}. \nPlease opt for a different group size!`
-      );
-    } else if (limit <= groupSize && limit < 2) {
-      return alert('At least 4 people are required to create groups.');
-    } else if (limit < groupSize) {
-      return alert(`Cannot create groups of size bigger than ${limit}.`);
-    } else {
-      result = true;
-    }
-    return result;
-  }
-
-  chunkArray(array, size) {
-    const chunks = [];
-    let index = 0;
-
-    while (index < array.length) {
-      chunks.push(array.slice(index, index + size));
-      index += size;
-    }
-
-    return chunks;
-  }
-
-  createGroup() {
-    const { people } = this.props;
-    const { groupSize } = this.state;
-
-    if (this.checkGroupSize()) {
-      const shuffledPeople = shuffleArray(people);
-      const groups = this.chunkArray(shuffledPeople, groupSize);
-      this.props.setGroups(groups);
-    }
-  }
-
-  incrementGroupSize() {
-    this.setState({ groupSize: this.state.groupSize + 1 });
-  }
-
-  decrementGroupSize() {
-    if (this.state.groupSize > 2) {
-      this.setState({ groupSize: this.state.groupSize - 1 });
-    } else {
-      alert('Groups cannot be smaller than 2');
-    }
-  }
-
-  render() {
-    const { groupSize } = this.state;
-
-    return (
-      <div className='create-group-container'>
-        <div>Select Group Size</div>
-        <Counter
-          count={groupSize}
-          increment={this.incrementGroupSize}
-          decrement={this.decrementGroupSize}
-        />
-        <button className='create-group-button' onClick={this.createGroup}>
-          Let's Group Up!
-        </button>
-      </div>
-    );
-  }
-}
+  return (
+    <div className='create-group-container no-select'>
+      <button
+        className={
+          groupOption === NUMBER_OF_GROUPS ? 'active-button option' : 'inactive-button option'
+        }
+        onClick={setGroupOptionToNumberOfGroups}
+      >
+        Number of Groups
+      </button>
+      <button
+        className={
+          groupOption === MINIMUM_SIZE ? 'active-button option' : 'inactive-button option'
+        }
+        onClick={setGroupOptionToMinimumSize}
+      >
+        Minimum Group Size
+      </button>
+      <Counter className='group-number-counter' {...groupOptionCounterProps} />
+      <button
+        className='create-group-button'
+        onClick={() => createGroup(people)}
+      >
+        Let's Group Up!
+      </button>
+    </div>
+  );
+};
 
 export default CreateGroup;
