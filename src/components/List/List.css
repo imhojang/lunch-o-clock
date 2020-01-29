@@ -36,7 +36,3 @@ li > svg:hover {
 li > button:active {
   fill: #ffd32e;
 }
-
-/* li > button > svg {
-  vertical-align: bottom;
-} */

@@ -1,7 +1,10 @@
-.counter-container > span {
+.counter-container > input {
   width: 100px;
   display: inline-block;
   font-size: 20px;
+  text-align:center;
+  background: none;
+  border: none;
 }
 
 .counter-container > svg {

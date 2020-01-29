@@ -22,6 +22,7 @@
   overflow: hidden;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 5px;
 }
 
 .current-people-list-container > ul {
@@ -29,7 +30,7 @@
   padding-right: 50px;
   margin-right: -50px;
   overflow-y: scroll;
-  padding-top: 5px;
+  padding-left: 13px;
 }
 
 .current-people-list-container > ul > li:hover {
@@ -38,7 +39,5 @@
 
 .total-number-people-box {
   padding: 13px 0;
-  background-color: rgba(255, 255, 255, 0.527);
-  /* border: 1px solid rgba(0, 0, 0, 0.2); */
   border-radius: 5px;
 }
