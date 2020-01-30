@@ -281,7 +281,6 @@ const group = (
         if (checkGroupSize(action.payload.people, state.number)) {
           const shuffledPeople = shuffleArray(action.payload.people);
           const groups = chunkArrayByCount(shuffledPeople, state.number);
-          console.log(groups);
           return {
             ...state,
             list: groups,
