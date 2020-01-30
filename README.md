@@ -50,26 +50,26 @@ node server/main.js (to start server)
 
 ## Challenges
 
-### 1. Dividing people into groups by minimum group size and number of groups
+1. Dividing people into groups by minimum group size and number of groups
 
-### 2. Incorporating ESLint rules
+2. Incorporating ESLint rules
 
-### 3. Using PropTypes as a type checker
+3. Using PropTypes as a type checker
 
-### 4. Writing unit tests for components
+4. Writing unit tests for components
 
-### 5. Using svg as icons
+5. Using svg as icons
 
-### 6. Whether to keep a local state to a component or add all state to redux store
+6. Whether to keep a local state to a component or add all state to redux store
 
-### 7. Deciding on how small a component should be
+7. Deciding on how small a component should be
 
-### 8. Naming variables and class selectors
+8. Naming variables and class selectors
 
 ## Things to do
 
-### 1. Additional component tests
+1. Additional component tests
 
-### 2. Endpoint testing
+2. Endpoint testing
 
-### 3. Proper error handling in server endpoints
+3. Proper error handling in server endpoints
