@@ -21,6 +21,8 @@ class InputContainer extends React.Component {
     const people = this.props.list
     if (isDuplicateName(currentValue, people)) {
       alert(`${currentValue} already exists! Please type in a different name!`)
+    } else if (currentValue.length === 0) {
+      alert('Please provide a valid name with chracters.')
     } else {
       const addPerson = this.props.addToList
       addPerson(currentValue)
