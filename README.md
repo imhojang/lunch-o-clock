@@ -21,10 +21,9 @@ cd lunch-o-clock
 
 npm install
 
-npm start (to start client)
-
 node server/main.js (to start server)
 
+npm start (to start client)
 ```
 
 ## Tasks
