@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './Counter.css'
-import { IncrementIcon, DecrementIcon } from '../../utils/Icons'
+import { IncrementIcon, DecrementIcon } from '../Icon'
 
 const Counter = ({ count, decrement, increment, updateCount }) => {
   return (

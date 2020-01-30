@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './List.css'
-import { DeleteIcon } from '../../utils/Icons'
+import { DeleteIcon } from '../Icon'
 
 const List = ({ items, handleDelete }) => {
   const renderedList = items.map(item => {
