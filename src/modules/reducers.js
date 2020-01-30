@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import * as types from './types'
+import * as types from './actiontypes'
 import {
   checkGroupSize,
   chunkArrayBySize,
@@ -7,13 +7,13 @@ import {
   shuffleArray
 } from '../utils'
 
-const initialState = {
+const peopleInitialState = {
   list: [],
   loading: false,
   error: null
 }
 
-const people = (state = initialState, action) => {
+export const people = (state = peopleInitialState, action) => {
   let list
   let person
   let updatedList
@@ -84,10 +84,13 @@ const people = (state = initialState, action) => {
   }
 }
 
-const group = (
-  state = { number: 1, list: [], option: types.NUMBER_OF_GROUPS },
-  action
-) => {
+const groupInitialState = {
+  number: 1,
+  list: [],
+  option: types.NUMBER_OF_GROUPS
+}
+
+export const group = (state = groupInitialState, action) => {
   switch (action.type) {
     case types.INCREMENT_GROUP_OPTION_COUNT:
       return {
@@ -152,7 +155,7 @@ const group = (
   }
 }
 
-const input = (state = { value: '' }, action) => {
+export const input = (state = { value: '' }, action) => {
   switch (action.type) {
     case types.UPDATE_INPUT_VALUE:
       return {
