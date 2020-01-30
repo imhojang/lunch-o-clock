@@ -1,60 +1,60 @@
-const express = require('express');
-const Person = require('./models/Person');
+const express = require('express')
+const Person = require('./models/Person')
 
-const router = express.Router();
+const router = express.Router()
 
 const removeExtraWhiteSpaces = str => {
-  return str.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ');
-};
+  return str.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ')
+}
 
 const isDuplicateName = (name, people) => {
-  let isDuplicate = false;
+  let isDuplicate = false
 
   people.forEach(person => {
     if (person.name.toLowerCase() === name.toLowerCase()) {
-      isDuplicate = true;
+      isDuplicate = true
     }
-  });
+  })
 
-  return isDuplicate;
-};
+  return isDuplicate
+}
 
 router.get('/people', async (req, res) => {
-  let people = await Person.find();
-  res.json(people);
-});
+  let people = await Person.find()
+  res.json(people)
+})
 
 router.post('/people', async (req, res) => {
-  const name = removeExtraWhiteSpaces(req.query.name);
-  const people = await Person.find();
+  const name = removeExtraWhiteSpaces(req.query.name)
+  const people = await Person.find()
 
   if (isDuplicateName(name, people)) {
-    console.log(`The following name "${name}" already exists`);
-    res.status(400).send(`${name} already exists`);
+    console.log(`The following name "${name}" already exists`)
+    res.status(400).send(`${name} already exists`)
   } else {
-    const newPerson = await new Person({ name });
+    const newPerson = await new Person({ name })
     newPerson.save((err, person) => {
       if (err) {
-        console.log('console.error', err.message);
-        return res.status(500).send('Internal Server Error');
+        console.log('console.error', err.message)
+        return res.status(500).send('Internal Server Error')
       } else {
-        console.log(`Successfully saved ${person.name} to people collection`);
-        return res.json(person);
+        console.log(`Successfully saved ${person.name} to people collection`)
+        return res.json(person)
       }
-    });
+    })
   }
-});
+})
 
 router.delete('/people', async (req, res) => {
-  const { name } = req.query;
-  const deletedPerson = await Person.findOneAndDelete({ name });
+  const { name } = req.query
+  const deletedPerson = await Person.findOneAndDelete({ name })
   if (deletedPerson) {
-    console.log(`Successfully removed ${deletedPerson.name} from people collection`);
-    res.json(deletedPerson);
+    console.log(`Successfully removed ${deletedPerson.name} from people collection`)
+    res.json(deletedPerson)
   } else {
-    res.status(400);
+    res.status(400)
   }
   // if not correctly deleted, return 500 internal server error
-});
+})
 
-module.exports = router;
+module.exports = router
