@@ -1,7 +1,8 @@
-import React from 'react';
-import Counter from '../Counter';
-import './CreateGroup.css';
-import { MINIMUM_SIZE, NUMBER_OF_GROUPS } from '../../modules/lunch';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Counter from '../Counter'
+import './CreateGroup.css'
+import { MINIMUM_SIZE, NUMBER_OF_GROUPS } from '../../modules/lunch'
 
 const CreateGroup = ({
   people,
@@ -12,22 +13,22 @@ const CreateGroup = ({
   setGroupOptionToMinimumSize,
   setGroupOptionToNumberOfGroups,
   createGroup,
-  groupOption,
+  groupOption
 }) => {
-
-
   const groupOptionCounterProps = {
     count: groupOptionCount,
     increment: incrementGroupOptionCount,
     decrement: decrementGroupOptionCount,
-    updateCount: updateGroupOptionCount,
-  };
+    updateCount: updateGroupOptionCount
+  }
 
   return (
     <div className='create-group-container no-select'>
       <button
         className={
-          groupOption === NUMBER_OF_GROUPS ? 'active-button option' : 'inactive-button option'
+          groupOption === NUMBER_OF_GROUPS
+            ? 'active-button option'
+            : 'inactive-button option'
         }
         onClick={setGroupOptionToNumberOfGroups}
       >
@@ -35,7 +36,9 @@ const CreateGroup = ({
       </button>
       <button
         className={
-          groupOption === MINIMUM_SIZE ? 'active-button option' : 'inactive-button option'
+          groupOption === MINIMUM_SIZE
+            ? 'active-button option'
+            : 'inactive-button option'
         }
         onClick={setGroupOptionToMinimumSize}
       >
@@ -49,7 +52,19 @@ const CreateGroup = ({
         Let's Group Up!
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default CreateGroup;
+CreateGroup.propTypes = {
+  people: PropTypes.array.isRequired,
+  groupOptionCount: PropTypes.number.isRequired,
+  incrementGroupOptionCount: PropTypes.func.isRequired,
+  decrementGroupOptionCount: PropTypes.func.isRequired,
+  updateGroupOptionCount: PropTypes.func.isRequired,
+  setGroupOptionToMinimumSize: PropTypes.func.isRequired,
+  setGroupOptionToNumberOfGroups: PropTypes.func.isRequired,
+  createGroup: PropTypes.func.isRequired,
+  groupOption: PropTypes.string.isRequired
+}
+
+export default CreateGroup

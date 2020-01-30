@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 import {
   getPeople,
@@ -15,13 +15,13 @@ import {
   updateGroupOptionCount,
   setGroupOptionToMinimumSize,
   setGroupOptionToNumberOfGroups,
-  createGroup,
-  
-} from './modules/lunch';
-import List from './components/List';
-import InputContainer from './components/Input/InputContainer';
-import Group from './components/Group';
-import './App.css';
+  createGroup
+
+} from './modules/lunch'
+import List from './components/List'
+import InputContainer from './components/Input/InputContainer'
+import Group from './components/Group'
+import './App.css'
 
 const mapDispatchToProps = {
   fetchPeople,
@@ -33,34 +33,46 @@ const mapDispatchToProps = {
   setGroupOptionToMinimumSize,
   setGroupOptionToNumberOfGroups,
   createGroup
-};
+}
 
 const mapStateToProps = state => {
-  const peopleData = getPeople(state);
-  const groupOptionCount = getGroupOptionCount(state);
-  const groupOption = getGroupOption(state);
-  const groupList = getGroup(state);
+  const peopleData = getPeople(state)
+  const groupOptionCount = getGroupOptionCount(state)
+  const groupOption = getGroupOption(state)
+  const groupList = getGroup(state)
   return {
     people: peopleData.list,
     isLoading: peopleData.loading,
     hasErrors: peopleData.error,
     groupOptionCount,
     groupOption,
-    groupList,
-  };
-};
+    groupList
+  }
+}
 
 class App extends React.Component {
   static propTypes = {
     people: PropTypes.array.isRequired,
+    fetchPeople: PropTypes.func.isRequired,
+    addPerson: PropTypes.func.isRequired,
+    deletePerson: PropTypes.func.isRequired,
+    groupOptionCount: PropTypes.number.isRequired,
+    incrementGroupOptionCount: PropTypes.func.isRequired,
+    decrementGroupOptionCount: PropTypes.func.isRequired,
+    updateGroupOptionCount: PropTypes.func.isRequired,
+    setGroupOptionToMinimumSize: PropTypes.func.isRequired,
+    setGroupOptionToNumberOfGroups: PropTypes.func.isRequired,
+    createGroup: PropTypes.func.isRequired,
+    groupOption: PropTypes.string.isRequired,
+    groupList: PropTypes.array.isRequired
   };
 
-  componentDidMount() {
-    const { fetchPeople } = this.props;
-    fetchPeople();
+  componentDidMount () {
+    const { fetchPeople } = this.props
+    fetchPeople()
   }
 
-  render() {
+  render () {
     const {
       people,
       addPerson,
@@ -73,8 +85,8 @@ class App extends React.Component {
       setGroupOptionToNumberOfGroups,
       createGroup,
       groupOption,
-      groupList,
-    } = this.props;
+      groupList
+    } = this.props
 
     const groupProps = {
       people,
@@ -86,20 +98,20 @@ class App extends React.Component {
       setGroupOptionToNumberOfGroups,
       createGroup,
       groupOption,
-      groupList,
-    };
+      groupList
+    }
 
     const emptyListMessage = (
       <p>
         The list is empty! <br />
         Add some people to group up for lunch!
       </p>
-    );
+    )
     const peopleCount = (
       <div className='total-number-people-box'>
         Number of people: {people.length}
       </div>
-    );
+    )
     return (
       <div className='container'>
         <h1>It's Lunch O'Clock!</h1>
@@ -107,7 +119,7 @@ class App extends React.Component {
         <div className='people-container'>
           <InputContainer addToList={addPerson} list={people} />
           <div className='current-people-list-container'>
-            {Boolean(people.length) ? (
+            {people.length ? (
               <List items={people} handleDelete={deletePerson} />
             ) : (
               emptyListMessage
@@ -120,8 +132,8 @@ class App extends React.Component {
           <Group {...groupProps} />
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

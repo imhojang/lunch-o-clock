@@ -1,8 +1,9 @@
-import React from 'react';
-import './Input.css';
+import React from 'react'
+import PropTypes from 'prop-types'
+import './Input.css'
 
 const Input = ({ value, handleSubmit, handleChange }) => {
-  const placeholderText = 'Type and press Enter key to add to list';
+  const placeholderText = 'Type and press Enter key to add to list'
   return (
     <form className='input-container' onSubmit={handleSubmit}>
       <input
@@ -12,7 +13,13 @@ const Input = ({ value, handleSubmit, handleChange }) => {
         placeholder={placeholderText}
       />
     </form>
-  );
-};
+  )
+}
 
-export default Input;
+Input.propTypes = {
+  value: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired
+}
+
+export default Input

@@ -1,6 +1,7 @@
-import React from 'react';
-import './Counter.css';
-import { IncrementIcon, DecrementIcon } from '../../utils/Icons';
+import React from 'react'
+import PropTypes from 'prop-types'
+import './Counter.css'
+import { IncrementIcon, DecrementIcon } from '../../utils/Icons'
 
 const Counter = ({ count, decrement, increment, updateCount }) => {
   return (
@@ -15,7 +16,14 @@ const Counter = ({ count, decrement, increment, updateCount }) => {
       />
       <IncrementIcon className='increment-button' handleClick={increment} />
     </div>
-  );
-};
+  )
+}
 
-export default Counter;
+Counter.propTypes = {
+  count: PropTypes.number.isRequired,
+  increment: PropTypes.func.isRequired,
+  decrement: PropTypes.func.isRequired,
+  updateCount: PropTypes.func.isRequired
+}
+
+export default Counter

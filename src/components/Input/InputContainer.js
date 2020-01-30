@@ -1,65 +1,65 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Input from '.';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Input from '.'
 
 class InputContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: '' };
+  constructor (props) {
+    super(props)
+    this.state = { value: '' }
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   static propTypes = {
     addToList: PropTypes.func.isRequired,
-    list: PropTypes.array.isRequired,
+    list: PropTypes.array.isRequired
   };
 
-  isDuplicateName(name) {
-    const people = this.props.list;
-    let isDuplicate = false;
+  isDuplicateName (name) {
+    const people = this.props.list
+    let isDuplicate = false
 
     people.forEach(person => {
       if (person.name.toLowerCase() === name.toLowerCase()) {
-        return (isDuplicate = true);
+        return (isDuplicate = true)
       }
-    });
+    })
 
-    return isDuplicate;
+    return isDuplicate
   }
 
-  removeExtraWhiteSpace(str) {
-    return str.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ');
+  removeExtraWhiteSpace (str) {
+    return str.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ')
   }
 
-  handleChange(e) {
-    this.setState({ value: e.target.value });
+  handleChange (e) {
+    this.setState({ value: e.target.value })
   }
 
-  handleSubmit(e) {
-    const currentValue = this.removeExtraWhiteSpace(this.state.value);
+  handleSubmit (e) {
+    const currentValue = this.removeExtraWhiteSpace(this.state.value)
 
     if (this.isDuplicateName(currentValue)) {
-      alert(`${currentValue} already exists! Please type in a different name!`);
+      alert(`${currentValue} already exists! Please type in a different name!`)
     } else {
-      const addPerson = this.props.addToList;
-      addPerson(currentValue);
+      const addPerson = this.props.addToList
+      addPerson(currentValue)
     }
 
-    this.setState({ value: '' });
-    e.preventDefault();
+    this.setState({ value: '' })
+    e.preventDefault()
   }
 
-  render() {
+  render () {
     return (
       <Input
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         value={this.state.value}
       />
-    );
+    )
   }
 }
 
-export default InputContainer;
+export default InputContainer

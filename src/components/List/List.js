@@ -1,6 +1,7 @@
-import React from 'react';
-import './List.css';
-import { DeleteIcon } from '../../utils/Icons';
+import React from 'react'
+import PropTypes from 'prop-types'
+import './List.css'
+import { DeleteIcon } from '../../utils/Icons'
 
 const List = ({ items, handleDelete }) => {
   const renderedList = items.map(item => {
@@ -15,10 +16,15 @@ const List = ({ items, handleDelete }) => {
           />
         )}
       </li>
-    );
-  });
+    )
+  })
 
-  return <ul>{renderedList}</ul>;
-};
+  return <ul>{renderedList}</ul>
+}
 
-export default List;
+List.propTypes = {
+  items: PropTypes.array.isRequired,
+  handleDelete: PropTypes.func.isRequired
+}
+
+export default List
