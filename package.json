@@ -8,6 +8,7 @@
   "proxy": "http://localhost:2018",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "bootstrap": "^4.0.0",
     "compression": "^1.7.1",
     "cors": "^2.8.5",
     "enzyme": "^3.11.0",
