@@ -36,9 +36,8 @@ router.delete('/people', async (req, res) => {
     console.log(`Successfully removed ${deletedPerson.name} from people collection`) // eslint-disable-line no-console
     res.json(deletedPerson)
   } else {
-    res.status(400)
+    res.status(400).send('Bad Request')
   }
-  // if not correctly deleted, return 500 internal server error
 })
 
 module.exports = router
