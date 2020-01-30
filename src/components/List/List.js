@@ -24,7 +24,7 @@ const List = ({ items, handleDelete }) => {
 
 List.propTypes = {
   items: PropTypes.array.isRequired,
-  handleDelete: PropTypes.func.isRequired
+  handleDelete: PropTypes.func
 }
 
 export default List
