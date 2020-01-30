@@ -1,5 +1,5 @@
 import * as api from '../utils/api'
-import * as types from './types'
+import * as types from './actiontypes'
 
 // People Actions
 
