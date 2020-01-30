@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Counter from '../Counter'
 import './CreateGroup.css'
-import { MINIMUM_SIZE, NUMBER_OF_GROUPS } from '../../modules/lunch'
+import { MINIMUM_SIZE, NUMBER_OF_GROUPS } from '../../utils/constant'
 
 const CreateGroup = ({
   people,

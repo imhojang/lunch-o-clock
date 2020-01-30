@@ -31,7 +31,7 @@ class InputContainer extends React.Component {
 
   render () {
     const placeholderText = 'Type and press Enter key to add to list'
-    
+
     return (
       <Input
         handleSubmit={this.handleSubmit}

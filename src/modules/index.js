@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-import lunch from './lunch'
+import lunch from './reducers'
 
 const rootReducer = combineReducers({
   lunch

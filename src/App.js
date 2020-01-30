@@ -3,14 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import {
-  getInputValue,
-  getPeople,
   fetchPeople,
   addPerson,
   deletePerson,
-  getGroup,
-  getGroupOption,
-  getGroupOptionCount,
   incrementGroupOptionCount,
   decrementGroupOptionCount,
   updateGroupOptionCount,
@@ -18,7 +13,14 @@ import {
   setGroupOptionToNumberOfGroups,
   createGroup,
   updateInputValue
-} from './modules/lunch'
+} from './modules/actions'
+import {
+  getPeople,
+  getGroup,
+  getGroupOption,
+  getGroupOptionCount,
+  getInputValue
+} from './modules/reducers'
 import List from './components/List'
 import InputContainer from './components/Input/InputContainer'
 import Group from './components/Group'

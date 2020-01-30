@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import CreateGroup from '../CreateGroup'
 import List from '../List'
 import './Group.css'
-import { MINIMUM_SIZE } from '../../modules/lunch'
+import { MINIMUM_SIZE } from '../../utils/constant'
 
 const Group = ({
   people,
