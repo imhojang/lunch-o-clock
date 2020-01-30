@@ -23,7 +23,7 @@ Counter.propTypes = {
   count: PropTypes.number.isRequired,
   increment: PropTypes.func.isRequired,
   decrement: PropTypes.func.isRequired,
-  updateCount: PropTypes.func.isRequired
+  updateCount: PropTypes.func
 }
 
 export default Counter

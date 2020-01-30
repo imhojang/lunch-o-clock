@@ -31,6 +31,7 @@ ShallowWrapper {
           className="count"
           name="count-input"
           onChange={[Function]}
+          type="number"
           value={2}
 />,
         <Unknown
@@ -62,6 +63,7 @@ ShallowWrapper {
           "className": "count",
           "name": "count-input",
           "onChange": [Function],
+          "type": "number",
           "value": 2,
         },
         "ref": null,
@@ -98,6 +100,7 @@ ShallowWrapper {
             className="count"
             name="count-input"
             onChange={[Function]}
+            type="number"
             value={2}
 />,
           <Unknown
@@ -129,6 +132,7 @@ ShallowWrapper {
             "className": "count",
             "name": "count-input",
             "onChange": [Function],
+            "type": "number",
             "value": 2,
           },
           "ref": null,
