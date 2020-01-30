@@ -22,7 +22,7 @@
 }
 
 .group-list-container {
-  height: calc(100% - 205px);
+  height: calc(100% - 207px);
   margin-top: 10px;
   overflow: hidden;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -32,7 +32,6 @@
   padding-right: 50px;
   margin-right: -50px;
   overflow-y: scroll;
-  padding-left: 13px;
 }
 
 .group-settings-text {
