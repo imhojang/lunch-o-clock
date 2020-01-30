@@ -23,7 +23,7 @@ const List = ({ items, handleDelete }) => {
 }
 
 List.propTypes = {
-  items: PropTypes.array.isRequired,
+  items: PropTypes.array,
   handleDelete: PropTypes.func
 }
 

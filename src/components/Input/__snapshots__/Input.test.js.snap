@@ -19,8 +19,8 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <input
-        onChange={undefined}
-        placeholder="Type and press Enter key to add to list"
+        onChange={[Function]}
+        placeholder={undefined}
         type="text"
         value={undefined}
 />,
@@ -33,8 +33,8 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
-        "onChange": undefined,
-        "placeholder": "Type and press Enter key to add to list",
+        "onChange": [Function],
+        "placeholder": undefined,
         "type": "text",
         "value": undefined,
       },
@@ -51,8 +51,8 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <input
-          onChange={undefined}
-          placeholder="Type and press Enter key to add to list"
+          onChange={[Function]}
+          placeholder={undefined}
           type="text"
           value={undefined}
 />,
@@ -65,8 +65,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "onChange": undefined,
-          "placeholder": "Type and press Enter key to add to list",
+          "onChange": [Function],
+          "placeholder": undefined,
           "type": "text",
           "value": undefined,
         },

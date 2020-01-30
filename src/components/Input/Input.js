@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Input.css'
 
-const Input = ({ value, handleSubmit, handleChange }) => {
-  const placeholderText = 'Type and press Enter key to add to list'
+const Input = ({ value, handleSubmit, handleChange, placeholderText }) => {
   return (
     <form className='input-container' onSubmit={handleSubmit}>
       <input
@@ -17,9 +16,10 @@ const Input = ({ value, handleSubmit, handleChange }) => {
 }
 
 Input.propTypes = {
-  value: PropTypes.string.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired
+  value: PropTypes.string,
+  handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
+  placeholderText: PropTypes.string
 }
 
 export default Input
