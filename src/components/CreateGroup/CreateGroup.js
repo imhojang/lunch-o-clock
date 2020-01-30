@@ -2,11 +2,9 @@ import React from 'react';
 import Counter from '../Counter';
 import './CreateGroup.css';
 import { MINIMUM_SIZE, NUMBER_OF_GROUPS } from '../../modules/lunch';
-import { shuffleArray, chunkArray } from '../../utils/index';
 
 const CreateGroup = ({
   people,
-  setGroups,
   groupOptionCount,
   incrementGroupOptionCount,
   decrementGroupOptionCount,
