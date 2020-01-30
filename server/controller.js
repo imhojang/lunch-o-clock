@@ -1,23 +1,7 @@
 const express = require('express')
 const Person = require('./models/Person')
-
 const router = express.Router()
-
-const removeExtraWhiteSpaces = str => {
-  return str.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ')
-}
-
-const isDuplicateName = (name, people) => {
-  let isDuplicate = false
-
-  people.forEach(person => {
-    if (person.name.toLowerCase() === name.toLowerCase()) {
-      isDuplicate = true
-    }
-  })
-
-  return isDuplicate
-}
+const { removeExtraWhiteSpaces, isDuplicateName } = require('./utils')
 
 router.get('/people', async (req, res) => {
   let people = await Person.find()
