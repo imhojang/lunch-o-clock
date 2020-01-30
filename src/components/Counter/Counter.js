@@ -9,6 +9,7 @@ const Counter = ({ count, decrement, increment, updateCount }) => {
       <input
         className='count'
         name='count-input'
+        type='number'
         value={count}
         onChange={e => updateCount(e.target.value)}
       />

@@ -7,6 +7,16 @@
   border: none;
 }
 
+.counter-container > input::-webkit-outer-spin-button,
+.counter-container > input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.counter-container > input[type=number] {
+  -moz-appearance:textfield;
+}
+
 .counter-container > svg {
   cursor: pointer;
   width: 15px;
