@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import {
+  getInputValue,
   getPeople,
   fetchPeople,
   addPerson,
@@ -15,8 +16,8 @@ import {
   updateGroupOptionCount,
   setGroupOptionToMinimumSize,
   setGroupOptionToNumberOfGroups,
-  createGroup
-
+  createGroup,
+  updateInputValue
 } from './modules/lunch'
 import List from './components/List'
 import InputContainer from './components/Input/InputContainer'
@@ -32,7 +33,8 @@ const mapDispatchToProps = {
   updateGroupOptionCount,
   setGroupOptionToMinimumSize,
   setGroupOptionToNumberOfGroups,
-  createGroup
+  createGroup,
+  updateInputValue
 }
 
 const mapStateToProps = state => {
@@ -40,13 +42,15 @@ const mapStateToProps = state => {
   const groupOptionCount = getGroupOptionCount(state)
   const groupOption = getGroupOption(state)
   const groupList = getGroup(state)
+  const inputValue = getInputValue(state)
   return {
     people: peopleData.list,
     isLoading: peopleData.loading,
     hasErrors: peopleData.error,
     groupOptionCount,
     groupOption,
-    groupList
+    groupList,
+    inputValue
   }
 }
 
@@ -64,7 +68,9 @@ class App extends React.Component {
     setGroupOptionToNumberOfGroups: PropTypes.func.isRequired,
     createGroup: PropTypes.func.isRequired,
     groupOption: PropTypes.string.isRequired,
-    groupList: PropTypes.array.isRequired
+    groupList: PropTypes.array.isRequired,
+    inputValue: PropTypes.string.isRequired,
+    updateInputValue: PropTypes.func.isRequired
   };
 
   componentDidMount () {
@@ -85,7 +91,9 @@ class App extends React.Component {
       setGroupOptionToNumberOfGroups,
       createGroup,
       groupOption,
-      groupList
+      groupList,
+      updateInputValue,
+      inputValue
     } = this.props
 
     const groupProps = {
@@ -101,9 +109,17 @@ class App extends React.Component {
       groupList
     }
 
+    const inputProps = {
+      addToList: addPerson,
+      list: people,
+      updateInputValue,
+      inputValue
+    }
+
     const emptyListMessage = (
       <p>
-        The list is empty! <br />
+        The list is empty!
+        <br />
         Add some people to group up for lunch!
       </p>
     )
@@ -112,12 +128,13 @@ class App extends React.Component {
         Number of people: {people.length}
       </div>
     )
+
     return (
       <div className='container'>
         <h1>It's Lunch O'Clock!</h1>
 
         <div className='people-container'>
-          <InputContainer addToList={addPerson} list={people} />
+          <InputContainer {...inputProps} />
           <div className='current-people-list-container'>
             {people.length ? (
               <List items={people} handleDelete={deletePerson} />

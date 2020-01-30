@@ -9,7 +9,7 @@ const Input = ({ value, handleSubmit, handleChange }) => {
       <input
         type='text'
         value={value}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e.target.value)}
         placeholder={placeholderText}
       />
     </form>

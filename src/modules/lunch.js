@@ -28,6 +28,9 @@ export const CREATE_GROUP = 'CREATE_GROUP'
 export const MINIMUM_SIZE = 'MINIMUM_SIZE'
 export const NUMBER_OF_GROUPS = 'NUMBER_OF_GROUPS'
 
+export const UPDATE_INPUT_VALUE = 'UPDATE_INPUT_VALUE'
+export const ADD_PERSON = 'ADD_PERSON'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -141,6 +144,13 @@ export const setGroupOptionToMinimumSize = () => ({
 
 export const setGroupOptionToNumberOfGroups = () => ({
   type: NUMBER_OF_GROUPS
+})
+
+// Input actions
+
+export const updateInputValue = value => ({
+  type: UPDATE_INPUT_VALUE,
+  payload: { value }
 })
 
 export const actions = {}
@@ -296,14 +306,28 @@ const group = (
   }
 }
 
+const input = (state = { value: '' }, action) => {
+  switch (action.type) {
+    case UPDATE_INPUT_VALUE:
+      return {
+        ...state,
+        value: action.payload.value
+      }
+    default:
+      return state
+  }
+}
+
 const lunchReducer = combineReducers({
   people,
-  group
+  group,
+  input
 })
 
 export const getPeople = state => state.lunch.people
 export const getGroupOptionCount = state => state.lunch.group.number
 export const getGroupOption = state => state.lunch.group.option
 export const getGroup = state => state.lunch.group.list
+export const getInputValue = state => state.lunch.input.value
 
 export default lunchReducer

@@ -70,3 +70,19 @@ export const checkGroupSize = (people, groupSize) => {
   }
   return result
 }
+
+export const isDuplicateName = (name, people) => {
+  let isDuplicate = false
+
+  people.forEach(person => {
+    if (person.name.toLowerCase() === name.toLowerCase()) {
+      return (isDuplicate = true)
+    }
+  })
+
+  return isDuplicate
+}
+
+export const removeExtraWhiteSpace = str => {
+  return str.replace(/^\s+|\s+$/g, '').replace(/\s+/g, ' ')
+}
